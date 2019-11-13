@@ -5,6 +5,7 @@ import lombok.*;
 import java.util.List;
 import java.util.Objects;
 
+@NoArgsConstructor
 public class Module {
 
     @NonNull
