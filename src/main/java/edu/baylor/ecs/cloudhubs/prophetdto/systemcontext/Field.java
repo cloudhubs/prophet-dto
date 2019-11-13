@@ -1,6 +1,6 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
-import lombok.*;
+import lombok.NonNull;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -17,6 +17,10 @@ public class Field {
     private Set<Annotation> annotations = new HashSet<>();
 
     private Entity entityReference = null;
+
+    private boolean isCollection;
+
+    public Field(){}
 
     public Field(@NonNull String type, @NonNull String name) {
         this.type = type;
@@ -53,6 +57,14 @@ public class Field {
 
     public void setEntityReference(Entity entityReference) {
         this.entityReference = entityReference;
+    }
+
+    public boolean isCollection() {
+        return isCollection;
+    }
+
+    public void setCollection(boolean collection) {
+        isCollection = collection;
     }
 
     @Override

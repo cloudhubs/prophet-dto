@@ -9,8 +9,10 @@ public class Annotation {
     @NonNull
     private String name;
 
-    private String stringValue = null;
-    private Integer intValue = 0;
+    private String stringValue;
+    private Integer intValue;
+
+    public Annotation(){}
 
     public Annotation(@NonNull String name, String stringValue, Integer intValue) {
         this.name = name;

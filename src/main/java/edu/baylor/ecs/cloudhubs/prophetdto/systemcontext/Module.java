@@ -12,6 +12,8 @@ public class Module {
 
     private List<Entity> entities;
 
+    public Module(){}
+
     public Module(@NonNull String name) {
         this.name = name;
     }

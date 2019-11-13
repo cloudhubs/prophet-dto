@@ -6,8 +6,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class BoundedContext {
+
     private String systemName;
+
     private List<Entity> boundedContextEntities;
+
+    public BoundedContext(){}
 
     public BoundedContext(String systemName, List<Entity> boundedContextEntities) {
         this.systemName = systemName;

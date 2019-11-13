@@ -9,6 +9,7 @@ public class SystemContext {
 
     @NonNull
     private String systemName;
+
     private List<Module> modules;
 
     public String getSystemName() {

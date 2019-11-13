@@ -13,6 +13,8 @@ public class Entity {
 
     private List<edu.baylor.ecs.cloudhubs.prophetdto.systemcontext.Field> fields = new LinkedList<>();
 
+    public Entity(){}
+
     public Entity(@NonNull String entityName) {
         this.entityName = entityName;
     }
