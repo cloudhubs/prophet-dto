@@ -1,25 +1,24 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
-import lombok.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
-@NoArgsConstructor
 public class Entity implements Cloneable{
 
-    @NonNull
     private String entityName;
 
     private List<edu.baylor.ecs.cloudhubs.prophetdto.systemcontext.Field> fields = new LinkedList<>();
 
-    public Entity(@NonNull String entityName) {
+    public Entity(){}
+
+    public Entity(String entityName) {
         this.entityName = entityName;
     }
 
-    public Entity(@NonNull String entityName, List<Field> fields) {
+    public Entity(String entityName, List<Field> fields) {
         this.entityName = entityName;
         this.fields = fields;
     }

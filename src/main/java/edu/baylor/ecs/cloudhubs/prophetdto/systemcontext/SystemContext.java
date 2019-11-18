@@ -1,14 +1,12 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
-import lombok.*;
-
 import java.util.List;
 import java.util.Objects;
 
 public class SystemContext {
 
-    @NonNull
     private String systemName;
+
     private List<Module> modules;
 
     public String getSystemName() {
@@ -27,7 +25,7 @@ public class SystemContext {
         this.modules = modules;
     }
 
-    public SystemContext(@NonNull String systemName, List<Module> modules) {
+    public SystemContext(String systemName, List<Module> modules) {
         this.systemName = systemName;
         this.modules = modules;
     }

@@ -21,6 +21,10 @@ public class Field implements Cloneable {
         return new Field(this.getName(), this.getType(), this.getAnnotations(), this.getEntityReference());
     }
 
+    private boolean isCollection;
+
+    public Field(){}
+
     public Field(String type, String name) {
         this.type = type;
         this.name = name;
@@ -63,6 +67,14 @@ public class Field implements Cloneable {
 
     public void setEntityReference(Entity entityReference) {
         this.entityReference = entityReference;
+    }
+
+    public boolean isCollection() {
+        return isCollection;
+    }
+
+    public void setCollection(boolean collection) {
+        isCollection = collection;
     }
 
     @Override

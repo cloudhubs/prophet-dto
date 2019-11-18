@@ -1,16 +1,9 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
-import lombok.*;
-
-import org.apache.commons.lang3.tuple.ImmutablePair;
-
-
 import java.util.*;
 
-@NoArgsConstructor
-public class Module implements Cloneable{
+public class Module implements Cloneable {
 
-    @NonNull
     private String name;
 
     private List<Entity> entities;
@@ -40,12 +33,13 @@ public class Module implements Cloneable{
         }
         return new Module(this.getName(), entityList);
     }
+    public Module(){}
 
-    public Module(@NonNull String name) {
+    public Module(String name) {
         this.name = name;
     }
 
-    public Module(@NonNull String name, List<Entity> entities) {
+    public Module( String name, List<Entity> entities) {
         this.name = name;
         this.entities = entities;
     }

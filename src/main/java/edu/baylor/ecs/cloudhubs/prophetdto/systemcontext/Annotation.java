@@ -1,18 +1,17 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
-import lombok.*;
-
 import java.util.Objects;
 
 public class Annotation {
 
-    @NonNull
     private String name;
 
-    private String stringValue = null;
-    private Integer intValue = 0;
+    private String stringValue;
+    private Integer intValue;
 
-    public Annotation(@NonNull String name, String stringValue, Integer intValue) {
+    public Annotation(){}
+
+    public Annotation(String name, String stringValue, Integer intValue) {
         this.name = name;
         this.stringValue = stringValue;
         this.intValue = intValue;
