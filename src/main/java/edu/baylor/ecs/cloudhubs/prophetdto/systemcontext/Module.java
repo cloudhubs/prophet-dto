@@ -19,17 +19,6 @@ public class Module implements Cloneable{
     public Module clone() throws CloneNotSupportedException {
         super.clone();
         Map<Entity, Entity> oldToNew = new HashMap<>();
-//        // need to keep track of the entity references in fields of the entities
-//        Map<String, List<Entity>> entityReferences = new HashMap<>();
-//        for(Entity e: this.getEntities()){
-//            for(Field f: e.getFields()){
-//                if(Objects.nonNull(f.getEntityReference())){
-//                    List<Entity> newList = new LinkedList<>();
-//                    newList = entityReferences.putIfAbsent(e.getEntityName(), newList);
-//                    newList.add(f.getEntityReference());
-//                }
-//            }
-//        }
         List<Entity> entityList = new ArrayList<>(this.getEntities().size());
         this.getEntities().forEach(x ->
         {
@@ -43,14 +32,6 @@ public class Module implements Cloneable{
 
         // now fix the entity references
         for(Entity e: entityList){
-//            List<Entity> validEntities = entityReferences.get(e.getEntityName());
-//            if(Objects.nonNull(validEntities)) {
-//                for (Field f : e.getFields()) {
-//                    if (Objects.nonNull(f.getEntityReference())) {
-//                        entityReferences.put(e.getEntityName(), f.getEntityReference());
-//                    }
-//                }
-//            }
             for (Field f : e.getFields()) {
                 if (Objects.nonNull(f.getEntityReference())) {
                     f.setEntityReference(oldToNew.get(f.getEntityReference()));
