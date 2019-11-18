@@ -1,26 +1,36 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
-import lombok.*;
-
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Field {
+public class Field implements Cloneable {
 
-    @NonNull
     private String name;
 
-    @NonNull
     private String type;
 
     private Set<Annotation> annotations = new HashSet<>();
 
     private Entity entityReference = null;
 
-    public Field(@NonNull String type, @NonNull String name) {
+    @Override
+    public Field clone() throws CloneNotSupportedException {
+        super.clone();
+        // need to change the entity reference later to the new entity
+        return new Field(this.getName(), this.getType(), this.getAnnotations(), this.getEntityReference());
+    }
+
+    public Field(String type, String name) {
         this.type = type;
         this.name = name;
+    }
+
+    public Field(String name, String type, Set<Annotation> annotations, Entity entityReference) {
+        this.name = name;
+        this.type = type;
+        this.annotations = annotations;
+        this.entityReference = entityReference;
     }
 
     public String getName() {

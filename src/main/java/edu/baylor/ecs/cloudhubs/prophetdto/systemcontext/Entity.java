@@ -2,12 +2,13 @@ package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
 @NoArgsConstructor
-public class Entity {
+public class Entity implements Cloneable{
 
     @NonNull
     private String entityName;
@@ -21,6 +22,20 @@ public class Entity {
     public Entity(@NonNull String entityName, List<Field> fields) {
         this.entityName = entityName;
         this.fields = fields;
+    }
+
+    @Override
+    public Entity clone() throws CloneNotSupportedException {
+        super.clone();
+        List<edu.baylor.ecs.cloudhubs.prophetdto.systemcontext.Field> newFields = new ArrayList<>(this.fields.size());
+        this.getFields().forEach(x ->
+        {
+            try {
+                newFields.add(x.clone());
+            }catch(CloneNotSupportedException e){
+            }
+        });
+        return new Entity(this.getEntityName(), newFields);
     }
 
     @Override

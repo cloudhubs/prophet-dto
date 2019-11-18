@@ -2,16 +2,63 @@ package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
 import lombok.*;
 
-import java.util.List;
-import java.util.Objects;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+
+
+import java.util.*;
 
 @NoArgsConstructor
-public class Module {
+public class Module implements Cloneable{
 
     @NonNull
     private String name;
 
     private List<Entity> entities;
+
+    @Override
+    public Module clone() throws CloneNotSupportedException {
+        super.clone();
+        Map<Entity, Entity> oldToNew = new HashMap<>();
+//        // need to keep track of the entity references in fields of the entities
+//        Map<String, List<Entity>> entityReferences = new HashMap<>();
+//        for(Entity e: this.getEntities()){
+//            for(Field f: e.getFields()){
+//                if(Objects.nonNull(f.getEntityReference())){
+//                    List<Entity> newList = new LinkedList<>();
+//                    newList = entityReferences.putIfAbsent(e.getEntityName(), newList);
+//                    newList.add(f.getEntityReference());
+//                }
+//            }
+//        }
+        List<Entity> entityList = new ArrayList<>(this.getEntities().size());
+        this.getEntities().forEach(x ->
+        {
+            try {
+                Entity newEnt = x.clone();
+                oldToNew.put(x, newEnt);
+                entityList.add(newEnt);
+            }catch(CloneNotSupportedException e){
+            }
+        });
+
+        // now fix the entity references
+        for(Entity e: entityList){
+//            List<Entity> validEntities = entityReferences.get(e.getEntityName());
+//            if(Objects.nonNull(validEntities)) {
+//                for (Field f : e.getFields()) {
+//                    if (Objects.nonNull(f.getEntityReference())) {
+//                        entityReferences.put(e.getEntityName(), f.getEntityReference());
+//                    }
+//                }
+//            }
+            for (Field f : e.getFields()) {
+                if (Objects.nonNull(f.getEntityReference())) {
+                    f.setEntityReference(oldToNew.get(f.getEntityReference()));
+                }
+            }
+        }
+        return new Module(this.getName(), entityList);
+    }
 
     public Module(@NonNull String name) {
         this.name = name;
