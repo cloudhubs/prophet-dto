@@ -1,16 +1,13 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
-import lombok.*;
-
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class SystemContext {
 
-    @NonNull
     private String systemName;
 
-    private List<Module> modules;
+    private Set<Module> modules;
 
     public String getSystemName() {
         return systemName;
@@ -20,15 +17,15 @@ public class SystemContext {
         this.systemName = systemName;
     }
 
-    public List<Module> getModules() {
+    public Set<Module> getModules() {
         return modules;
     }
 
-    public void setModules(List<Module> modules) {
+    public void setModules(Set<Module> modules) {
         this.modules = modules;
     }
 
-    public SystemContext(@NonNull String systemName, List<Module> modules) {
+    public SystemContext(String systemName, Set<Module> modules) {
         this.systemName = systemName;
         this.modules = modules;
     }

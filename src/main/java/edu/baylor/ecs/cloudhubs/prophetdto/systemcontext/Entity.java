@@ -1,27 +1,39 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
-import lombok.*;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
-public class Entity {
+public class Entity implements Cloneable{
 
-    @NonNull
     private String entityName;
 
-    private List<edu.baylor.ecs.cloudhubs.prophetdto.systemcontext.Field> fields = new LinkedList<>();
+    private Set<Field> fields = new HashSet<>();
 
     public Entity(){}
 
-    public Entity(@NonNull String entityName) {
+    public Entity(String entityName) {
         this.entityName = entityName;
     }
 
-    public Entity(@NonNull String entityName, List<Field> fields) {
+    public Entity(String entityName, Set<Field> fields) {
         this.entityName = entityName;
         this.fields = fields;
+    }
+
+    @Override
+    public Entity clone() throws CloneNotSupportedException {
+        super.clone();
+        Set<Field> newFields = new HashSet<>(this.fields.size());
+        this.getFields().forEach(x ->
+        {
+            try {
+                newFields.add(x.clone());
+            }catch(CloneNotSupportedException e){
+            }
+        });
+        return new Entity(this.getEntityName(), newFields);
     }
 
     @Override
@@ -46,11 +58,11 @@ public class Entity {
         this.entityName = entityName;
     }
 
-    public List<Field> getFields() {
+    public Set<Field> getFields() {
         return fields;
     }
 
-    public void setFields(List<Field> fields) {
+    public void setFields(Set<Field> fields) {
         this.fields = fields;
     }
 }
