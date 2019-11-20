@@ -1,18 +1,17 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
-
-import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 public class BoundedContext {
 
     private String systemName;
 
-    private List<Entity> boundedContextEntities;
+    private Set<Entity> boundedContextEntities;
 
     public BoundedContext(){}
 
-    public BoundedContext(String systemName, List<Entity> boundedContextEntities) {
+    public BoundedContext(String systemName, Set<Entity> boundedContextEntities) {
         this.systemName = systemName;
         this.boundedContextEntities = boundedContextEntities;
     }
@@ -25,11 +24,11 @@ public class BoundedContext {
         this.systemName = systemName;
     }
 
-    public List<Entity> getBoundedContextEntities() {
+    public Set<Entity> getBoundedContextEntities() {
         return boundedContextEntities;
     }
 
-    public void setBoundedContextEntities(List<Entity> boundedContextEntities) {
+    public void setBoundedContextEntities(Set<Entity> boundedContextEntities) {
         this.boundedContextEntities = boundedContextEntities;
     }
 

@@ -1,16 +1,15 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class Entity implements Cloneable{
 
     private String entityName;
 
-    private List<edu.baylor.ecs.cloudhubs.prophetdto.systemcontext.Field> fields = new LinkedList<>();
+    private Set<Field> fields = new HashSet<>();
 
     public Entity(){}
 
@@ -18,7 +17,7 @@ public class Entity implements Cloneable{
         this.entityName = entityName;
     }
 
-    public Entity(String entityName, List<Field> fields) {
+    public Entity(String entityName, Set<Field> fields) {
         this.entityName = entityName;
         this.fields = fields;
     }
@@ -26,7 +25,7 @@ public class Entity implements Cloneable{
     @Override
     public Entity clone() throws CloneNotSupportedException {
         super.clone();
-        List<edu.baylor.ecs.cloudhubs.prophetdto.systemcontext.Field> newFields = new ArrayList<>(this.fields.size());
+        Set<Field> newFields = new HashSet<>(this.fields.size());
         this.getFields().forEach(x ->
         {
             try {
@@ -59,11 +58,11 @@ public class Entity implements Cloneable{
         this.entityName = entityName;
     }
 
-    public List<Field> getFields() {
+    public Set<Field> getFields() {
         return fields;
     }
 
-    public void setFields(List<Field> fields) {
+    public void setFields(Set<Field> fields) {
         this.fields = fields;
     }
 }

@@ -6,40 +6,41 @@ public class Module implements Cloneable {
 
     private String name;
 
-    private List<Entity> entities;
+    private Set<Entity> entities;
 
     @Override
     public Module clone() throws CloneNotSupportedException {
         super.clone();
         Map<Entity, Entity> oldToNew = new HashMap<>();
-        List<Entity> entityList = new ArrayList<>(this.getEntities().size());
+        Set<Entity> entitySet = new HashSet<>();
         this.getEntities().forEach(x ->
         {
             try {
                 Entity newEnt = x.clone();
                 oldToNew.put(x, newEnt);
-                entityList.add(newEnt);
+                entitySet.add(newEnt);
             }catch(CloneNotSupportedException e){
             }
         });
 
         // now fix the entity references
-        for(Entity e: entityList){
+        for(Entity e: entitySet){
             for (Field f : e.getFields()) {
                 if (Objects.nonNull(f.getEntityReference())) {
                     f.setEntityReference(oldToNew.get(f.getEntityReference()));
                 }
             }
         }
-        return new Module(this.getName(), entityList);
+        return new Module(this.getName(), entitySet);
     }
     public Module(){}
 
     public Module(String name) {
         this.name = name;
+        this.entities = new HashSet<>();
     }
 
-    public Module( String name, List<Entity> entities) {
+    public Module( String name, Set<Entity> entities) {
         this.name = name;
         this.entities = entities;
     }
@@ -52,11 +53,11 @@ public class Module implements Cloneable {
         this.name = name;
     }
 
-    public List<Entity> getEntities() {
+    public Set<Entity> getEntities() {
         return entities;
     }
 
-    public void setEntities(List<Entity> entities) {
+    public void setEntities(Set<Entity> entities) {
         this.entities = entities;
     }
 
