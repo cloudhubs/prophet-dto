@@ -1,24 +1,46 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
-import lombok.*;
+import java.util.*;
 
-import java.util.List;
-import java.util.Objects;
+public class Module implements Cloneable {
 
-public class Module {
-
-    @NonNull
     private String name;
 
-    private List<Entity> entities;
+    private Set<Entity> entities;
 
+    @Override
+    public Module clone() throws CloneNotSupportedException {
+        super.clone();
+        Map<Entity, Entity> oldToNew = new HashMap<>();
+        Set<Entity> entitySet = new HashSet<>();
+        this.getEntities().forEach(x ->
+        {
+            try {
+                Entity newEnt = x.clone();
+                oldToNew.put(x, newEnt);
+                entitySet.add(newEnt);
+            }catch(CloneNotSupportedException e){
+            }
+        });
+
+        // now fix the entity references
+        for(Entity e: entitySet){
+            for (Field f : e.getFields()) {
+                if (Objects.nonNull(f.getEntityReference())) {
+                    f.setEntityReference(oldToNew.get(f.getEntityReference()));
+                }
+            }
+        }
+        return new Module(this.getName(), entitySet);
+    }
     public Module(){}
 
-    public Module(@NonNull String name) {
+    public Module(String name) {
         this.name = name;
+        this.entities = new HashSet<>();
     }
 
-    public Module(@NonNull String name, List<Entity> entities) {
+    public Module( String name, Set<Entity> entities) {
         this.name = name;
         this.entities = entities;
     }
@@ -31,11 +53,11 @@ public class Module {
         this.name = name;
     }
 
-    public List<Entity> getEntities() {
+    public Set<Entity> getEntities() {
         return entities;
     }
 
-    public void setEntities(List<Entity> entities) {
+    public void setEntities(Set<Entity> entities) {
         this.entities = entities;
     }
 
