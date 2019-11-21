@@ -14,9 +14,7 @@ public class Field implements Cloneable {
 
     private Entity entityReference = null;
 
-    @Override
-    public Field clone() throws CloneNotSupportedException {
-        super.clone();
+    public Field clone(){
         // need to change the entity reference later to the new entity
         return new Field(this.getName(), this.getType(), this.getAnnotations(), this.getEntityReference());
     }

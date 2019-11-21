@@ -9,18 +9,14 @@ public class Module implements Cloneable {
     private Set<Entity> entities;
 
     @Override
-    public Module clone() throws CloneNotSupportedException {
-        super.clone();
+    public Module clone(){
         Map<Entity, Entity> oldToNew = new HashMap<>();
         Set<Entity> entitySet = new HashSet<>();
         this.getEntities().forEach(x ->
         {
-            try {
-                Entity newEnt = x.clone();
-                oldToNew.put(x, newEnt);
-                entitySet.add(newEnt);
-            }catch(CloneNotSupportedException e){
-            }
+            Entity newEnt = x.clone();
+            oldToNew.put(x, newEnt);
+            entitySet.add(newEnt);
         });
 
         // now fix the entity references

@@ -11,8 +11,6 @@ public class Entity implements Cloneable{
 
     private Set<Field> fields = new HashSet<>();
 
-    public Entity(){}
-
     public Entity(String entityName) {
         this.entityName = entityName;
     }
@@ -23,17 +21,20 @@ public class Entity implements Cloneable{
     }
 
     @Override
-    public Entity clone() throws CloneNotSupportedException {
-        super.clone();
+    public Entity clone(){
         Set<Field> newFields = new HashSet<>(this.fields.size());
         this.getFields().forEach(x ->
         {
-            try {
-                newFields.add(x.clone());
-            }catch(CloneNotSupportedException e){
-            }
+            newFields.add(x.clone());
+
         });
         return new Entity(this.getEntityName(), newFields);
+    }
+
+    public Entity copyWithNamePreface(String preface){
+        Entity toReturn = this.clone();
+        toReturn.entityName = preface + toReturn.entityName;
+        return toReturn;
     }
 
     @Override
