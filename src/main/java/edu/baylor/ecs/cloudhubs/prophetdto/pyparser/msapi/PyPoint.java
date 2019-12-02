@@ -16,11 +16,7 @@ public class PyPoint {
     String fileName;
     @JsonProperty("line_no")
     Integer lineNumber;
-    Object response;
-    Object payload;
-    @JsonProperty("response_meta")
-    Object responseMeta;
-    @JsonProperty("payload_meta")
-    Object payloadMeta;
+    PyPayload response;
+    List<PyPayload> payload;
     List<Object> decorators = new ArrayList<>();
 }
