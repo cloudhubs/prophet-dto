@@ -2,33 +2,33 @@ package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
 import java.util.*;
 
-public class Module implements Cloneable {
+public class Module {
 
     private String name;
 
     private Set<Entity> entities;
 
-    @Override
-    public Module clone(){
-        Map<Entity, Entity> oldToNew = new HashMap<>();
-        Set<Entity> entitySet = new HashSet<>();
-        this.getEntities().forEach(x ->
-        {
-            Entity newEnt = x.clone();
-            oldToNew.put(x, newEnt);
-            entitySet.add(newEnt);
-        });
-
-        // now fix the entity references
-        for(Entity e: entitySet){
-            for (Field f : e.getFields()) {
-                if (Objects.nonNull(f.getEntityReference())) {
-                    f.setEntityReference(oldToNew.get(f.getEntityReference()));
-                }
-            }
-        }
-        return new Module(this.getName(), entitySet);
-    }
+//    @Override
+//    public Module clone(){
+//        Map<Entity, Entity> oldToNew = new HashMap<>();
+//        Set<Entity> entitySet = new HashSet<>();
+//        this.getEntities().forEach(x ->
+//        {
+//            Entity newEnt = x.clone();
+//            oldToNew.put(x, newEnt);
+//            entitySet.add(newEnt);
+//        });
+//
+//        // now fix the entity references
+//        for(Entity e: entitySet){
+//            for (Field f : e.getFields()) {
+//                if (Objects.nonNull(f.getEntityReference())) {
+//                    f.setEntityReference(oldToNew.get(f.getEntityReference()));
+//                }
+//            }
+//        }
+//        return new Module(this.getName(), entitySet);
+//    }
     public Module(){}
 
     public Module(String name) {

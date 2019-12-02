@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Entity implements Cloneable{
+public class Entity {
 
     private String entityName;
 
@@ -20,22 +20,22 @@ public class Entity implements Cloneable{
         this.fields = fields;
     }
 
-    @Override
-    public Entity clone(){
-        Set<Field> newFields = new HashSet<>(this.fields.size());
-        this.getFields().forEach(x ->
-        {
-            newFields.add(x.clone());
+//    @Override
+//    public Entity clone(){
+//        Set<Field> newFields = new HashSet<>(this.fields.size());
+//        this.getFields().forEach(x ->
+//        {
+//            newFields.add(x.clone());
+//
+//        });
+//        return new Entity(this.getEntityName(), newFields);
+//    }
 
-        });
-        return new Entity(this.getEntityName(), newFields);
-    }
-
-    public Entity copyWithNamePreface(String preface){
-        Entity toReturn = this.clone();
-        toReturn.entityName = preface + toReturn.entityName;
-        return toReturn;
-    }
+//    public Entity copyWithNamePreface(String preface){
+//        Entity toReturn = this.clone();
+//        toReturn.entityName = preface + toReturn.entityName;
+//        return toReturn;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -65,5 +65,12 @@ public class Entity implements Cloneable{
 
     public void setFields(Set<Field> fields) {
         this.fields = fields;
+    }
+
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "entityName='" + entityName + '\'' +
+                '}';
     }
 }

@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public class Field implements Cloneable {
+public class Field {
 
     private String name;
 
@@ -14,10 +14,15 @@ public class Field implements Cloneable {
 
     private Entity entityReference = null;
 
-    public Field clone(){
-        // need to change the entity reference later to the new entity
-        return new Field(this.getName(), this.getType(), this.getAnnotations(), this.getEntityReference());
-    }
+    private boolean isReference;
+
+    private String entityRefName;
+
+//    public Field clone(){
+//        // need to change the entity reference later to the new entity
+//        return new Field(this.getName(), this.getType(), this.getAnnotations(), this.getEntityReference(),
+//                this.isReference(), this.getEntityRefName(), this.isCollection());
+//    }
 
     private boolean isCollection;
 
@@ -33,6 +38,16 @@ public class Field implements Cloneable {
         this.type = type;
         this.annotations = annotations;
         this.entityReference = entityReference;
+    }
+
+    public Field(String name, String type, Set<Annotation> annotations, Entity entityReference, boolean isReference, String entityRefName, boolean isCollection) {
+        this.name = name;
+        this.type = type;
+        this.annotations = annotations;
+        this.entityReference = entityReference;
+        this.isReference = isReference;
+        this.entityRefName = entityRefName;
+        this.isCollection = isCollection;
     }
 
     public String getName() {
@@ -75,19 +90,48 @@ public class Field implements Cloneable {
         isCollection = collection;
     }
 
+    public boolean isReference() {
+        return isReference;
+    }
+
+    public void setReference(boolean reference) {
+        isReference = reference;
+    }
+
+    public String getEntityRefName() {
+        return entityRefName;
+    }
+
+    public void setEntityRefName(String entityRefName) {
+        this.entityRefName = entityRefName;
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Field)) return false;
         Field field = (Field) o;
-        return Objects.equals(name, field.name) &&
-                Objects.equals(type, field.type) &&
-                Objects.equals(annotations, field.annotations) &&
-                Objects.equals(entityReference, field.entityReference);
+        return isReference() == field.isReference() &&
+                isCollection() == field.isCollection() &&
+                Objects.equals(getName(), field.getName()) &&
+                Objects.equals(getType(), field.getType()) &&
+                Objects.equals(getAnnotations(), field.getAnnotations()) &&
+                Objects.equals(getEntityReference(), field.getEntityReference()) &&
+                Objects.equals(getEntityRefName(), field.getEntityRefName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, type, annotations, entityReference);
+        return Objects.hash(getName(), getType(), getAnnotations(), getEntityReference(), isReference(), getEntityRefName(), isCollection());
+    }
+
+    @Override
+    public String toString() {
+        return "Field{" +
+                "name='" + name + '\'' +
+                ", type='" + type + '\'' +
+                ", isReference=" + isReference +
+                '}';
     }
 }
