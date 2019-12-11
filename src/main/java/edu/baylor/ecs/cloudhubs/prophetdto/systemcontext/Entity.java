@@ -20,22 +20,21 @@ public class Entity {
         this.fields = fields;
     }
 
-//    @Override
-//    public Entity clone(){
-//        Set<Field> newFields = new HashSet<>(this.fields.size());
-//        this.getFields().forEach(x ->
-//        {
-//            newFields.add(x.clone());
-//
-//        });
-//        return new Entity(this.getEntityName(), newFields);
-//    }
+    public Entity clone(){
+        Set<Field> newFields = new HashSet<>(this.fields.size());
+        this.getFields().forEach(x ->
+        {
+            newFields.add(x.clone());
 
-//    public Entity copyWithNamePreface(String preface){
-//        Entity toReturn = this.clone();
-//        toReturn.entityName = preface + toReturn.entityName;
-//        return toReturn;
-//    }
+        });
+        return new Entity(this.getEntityName(), newFields);
+    }
+
+    public Entity copyWithNamePreface(String preface){
+        Entity toReturn = this.clone();
+        toReturn.entityName = preface + toReturn.entityName;
+        return toReturn;
+    }
 
     @Override
     public boolean equals(Object o) {

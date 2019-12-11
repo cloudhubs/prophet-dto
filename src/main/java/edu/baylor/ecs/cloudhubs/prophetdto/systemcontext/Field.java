@@ -18,11 +18,11 @@ public class Field {
 
     private String entityRefName;
 
-//    public Field clone(){
-//        // need to change the entity reference later to the new entity
-//        return new Field(this.getName(), this.getType(), this.getAnnotations(), this.getEntityReference(),
-//                this.isReference(), this.getEntityRefName(), this.isCollection());
-//    }
+    public Field clone(){
+        // need to change the entity reference later to the new entity
+        return new Field(this.getName(), this.getType(), this.getAnnotations(), this.getEntityReference(),
+                this.isReference(), this.getEntityRefName(), this.isCollection());
+    }
 
     private boolean isCollection;
 
