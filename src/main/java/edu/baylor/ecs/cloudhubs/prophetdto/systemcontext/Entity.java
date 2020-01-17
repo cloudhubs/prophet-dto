@@ -24,7 +24,7 @@ public class Entity {
         this.fields = fields;
     }
 
-    public Entity clone(){
+    public Entity clone() {
         Set<Field> newFields = new HashSet<>(this.fields.size());
         this.getFields().forEach(x ->
         {
@@ -34,9 +34,9 @@ public class Entity {
         return new Entity(new Name(this.getEntityName()), newFields);
     }
 
-    public Entity copyWithNamePreface(String preface){
+    public Entity copyWithNamePreface(String preface) {
         Entity toReturn = this.clone();
-        entityName.setFullName(preface + entityName.getFullName());
+        toReturn.getEntityName().setFullName(preface + entityName.getFullName());
         return toReturn;
     }
 

@@ -41,8 +41,9 @@ public class Name {
         return Objects.equals(name, name1.name);
     }
 
+    //TODO fix this and equals
     @Override
     public int hashCode() {
-        return Objects.hash(name, fullName);
+        return Objects.hash(fullName);
     }
 }
