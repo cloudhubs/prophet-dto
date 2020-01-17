@@ -7,15 +7,19 @@ import java.util.Set;
 
 public class Entity {
 
-    private String entityName;
+    private Name entityName;
 
     private Set<Field> fields = new HashSet<>();
 
-    public Entity(String entityName) {
+    public Entity(Name entityName) {
         this.entityName = entityName;
     }
 
-    public Entity(String entityName, Set<Field> fields) {
+    public Entity(String entityName){
+        this.entityName = new Name(entityName);
+    }
+
+    public Entity(Name entityName, Set<Field> fields) {
         this.entityName = entityName;
         this.fields = fields;
     }
@@ -27,12 +31,12 @@ public class Entity {
             newFields.add(x.clone());
 
         });
-        return new Entity(this.getEntityName(), newFields);
+        return new Entity(new Name(this.getEntityName()), newFields);
     }
 
     public Entity copyWithNamePreface(String preface){
         Entity toReturn = this.clone();
-        toReturn.entityName = preface + toReturn.entityName;
+        entityName.setFullName(preface + entityName.getFullName());
         return toReturn;
     }
 
@@ -50,11 +54,11 @@ public class Entity {
         return Objects.hash(entityName, fields);
     }
 
-    public String getEntityName() {
+    public Name getEntityName() {
         return entityName;
     }
 
-    public void setEntityName(String entityName) {
+    public void setEntityName(Name entityName) {
         this.entityName = entityName;
     }
 
