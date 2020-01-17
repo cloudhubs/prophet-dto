@@ -12,7 +12,7 @@ public class Entity {
     private Set<Field> fields = new HashSet<>();
 
     public Entity(Name entityName) {
-        this.entityName = entityName;
+        this.entityName = new Name(entityName);
     }
 
     public Entity(String entityName){
@@ -20,7 +20,7 @@ public class Entity {
     }
 
     public Entity(Name entityName, Set<Field> fields) {
-        this.entityName = entityName;
+        this.entityName = new Name(entityName);
         this.fields = fields;
     }
 

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Module {
 
-    private String name;
+    private Name name;
 
     private Set<Entity> entities;
 
@@ -31,20 +31,20 @@ public class Module {
     public Module(){}
 
     public Module(String name) {
-        this.name = name;
+        this.name = new Name(name);
         this.entities = new HashSet<>();
     }
 
-    public Module( String name, Set<Entity> entities) {
-        this.name = name;
+    public Module( Name name, Set<Entity> entities) {
+        this.name = new Name(name);
         this.entities = entities;
     }
 
-    public String getName() {
+    public Name getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(Name name) {
         this.name = name;
     }
 

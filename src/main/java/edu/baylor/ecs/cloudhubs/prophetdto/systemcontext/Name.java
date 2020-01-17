@@ -23,12 +23,12 @@ public class Name {
         this.fullName = fullName;
     }
 
-    Name(Name n){
+    public Name(Name n){
         this.name = n.name;
         this.fullName = n.fullName;
     }
 
-    Name(String str){
+    public Name(String str){
         this.name = str;
         this.fullName = str;
     }

@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Field {
 
-    private String name;
+    private Name fieldName;
 
     private String type;
 
@@ -28,20 +28,25 @@ public class Field {
 
     public Field(){}
 
-    public Field(String type, String name) {
+    public Field(String type, Name name) {
         this.type = type;
-        this.name = name;
+        this.fieldName = name;
     }
 
-    public Field(String name, String type, Set<Annotation> annotations, Entity entityReference) {
-        this.name = name;
+    public Field(String type, String name){
+        this.type = type;
+        this.fieldName = new Name(name);
+    }
+
+    public Field(Name name, String type, Set<Annotation> annotations, Entity entityReference) {
+        this.fieldName = new Name(name);
         this.type = type;
         this.annotations = annotations;
         this.entityReference = entityReference;
     }
 
-    public Field(String name, String type, Set<Annotation> annotations, Entity entityReference, boolean isReference, String entityRefName, boolean isCollection) {
-        this.name = name;
+    public Field(Name name, String type, Set<Annotation> annotations, Entity entityReference, boolean isReference, String entityRefName, boolean isCollection) {
+        this.fieldName = new Name(name);
         this.type = type;
         this.annotations = annotations;
         this.entityReference = entityReference;
@@ -50,12 +55,12 @@ public class Field {
         this.isCollection = isCollection;
     }
 
-    public String getName() {
-        return name;
+    public Name getName() {
+        return fieldName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(Name name) {
+        this.fieldName = name;
     }
 
     public String getType() {
@@ -129,7 +134,7 @@ public class Field {
     @Override
     public String toString() {
         return "Field{" +
-                "name='" + name + '\'' +
+                "name='" + fieldName.getName() + '\'' +
                 ", type='" + type + '\'' +
                 ", isReference=" + isReference +
                 '}';
