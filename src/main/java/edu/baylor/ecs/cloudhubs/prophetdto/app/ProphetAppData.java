@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ProphetAppData {
     private String projectName;
-    private ContextMap communication;
+    private ContextMap communicationContextMap;
     private ContextMap contextMap;
     private List<MicroserviceResult> microservices;
 
@@ -15,8 +15,8 @@ public class ProphetAppData {
 
     public String getProjectName() { return projectName; }
     public void setProjectName(String projectName) { this.projectName = projectName; }
-    public ContextMap getCommunication() { return communication; }
-    public void setCommunication(ContextMap communication) { this.communication = communication; }
+    public ContextMap getCommunicationContextMap() { return communicationContextMap; }
+    public void setCommunicationContextMap(ContextMap communicationContextMap) { this.communicationContextMap = communicationContextMap; }
     public ContextMap getContextMap() { return contextMap; }
     public void setContextMap(ContextMap contextMap) { this.contextMap = contextMap; }
     public List<MicroserviceResult> getMicroservices() { return microservices; }
