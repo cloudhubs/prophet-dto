@@ -57,7 +57,7 @@ public class MsMermaidGraph {
         }
         // from -->|text| to
         for (MermaidEdge edge : edges) {
-            lines.add(edge.getFrom() + " -->|" + edge.getText() + "| " + edge.getTo());
+            lines.add(edge.getFrom() + "-->|\"" + edge.getText() + "\"|" + edge.getTo());
         }
         return lines;
     }

@@ -77,7 +77,7 @@ public class MermaidGraph {
         list.add("classDiagram");
         for (Entity e: entities
         ) {
-            list.add("\t class " + e.getEntityName());
+            list.add("\t class " + e.getEntityName().getName());
             for (Field f: e.getFields()){
                 if (!f.isReference()){
                     list.add("      " + e.getEntityName().getName() + " : +" + f.getType() + " " + f.getName().getName());
