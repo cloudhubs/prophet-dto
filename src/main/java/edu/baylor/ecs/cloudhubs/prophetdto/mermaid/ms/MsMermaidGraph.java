@@ -4,8 +4,13 @@ import edu.baylor.ecs.cloudhubs.prophetdto.mermaid.MermaidEdge;
 import edu.baylor.ecs.cloudhubs.prophetdto.mermaid.MermaidNode;
 import edu.baylor.ecs.cloudhubs.prophetdto.mscontext.MsModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a mermaid graph of a microservice REST communication graph obtained from RAD
+ * TODO: Perhaps MermaidGraph should be broken out into a super class, with this and EntityMermaidGraph as subclasses
+ */
 public class MsMermaidGraph {
     private List<MermaidNode> nodes;
     private List<MermaidEdge> edges;
@@ -14,9 +19,10 @@ public class MsMermaidGraph {
     public MsMermaidGraph() {
     }
 
-    public MsMermaidGraph(List<MermaidNode> nodes, List<MermaidEdge> edges) {
+    public MsMermaidGraph(List<MermaidNode> nodes, List<MermaidEdge> edges, MsModel model) {
         this.nodes = nodes;
         this.edges = edges;
+        this.model = model;
     }
 
     public List<MermaidNode> getNodes() {
@@ -41,5 +47,14 @@ public class MsMermaidGraph {
 
     public void setModel(MsModel model) {
         this.model = model;
+    }
+
+    public List<String> getHtmlLines() {
+        List<String> lines = new ArrayList<>();
+        lines.add("graph TD");
+        nodes.stream().map(MermaidNode::getName).map(lines::add);
+        // from -->|text| to
+        edges.stream().map(edge -> lines.add(edge.getFrom() + " -->|" + edge.getText() + "| " + edge.getTo()));
+        return lines;
     }
 }
