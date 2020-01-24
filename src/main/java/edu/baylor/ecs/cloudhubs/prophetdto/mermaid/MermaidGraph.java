@@ -80,7 +80,7 @@ public class MermaidGraph {
             list.add("\t class " + e.getEntityName());
             for (Field f: e.getFields()){
                 if (!f.isReference()){
-                    list.add("      " + e.getEntityName() + " : +" + f.getType() + " " + f.getName());
+                    list.add("      " + e.getEntityName().getName() + " : +" + f.getType() + " " + f.getName().getName());
                 }
             }
         }

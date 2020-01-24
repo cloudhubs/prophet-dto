@@ -52,9 +52,13 @@ public class MsMermaidGraph {
     public List<String> getHtmlLines() {
         List<String> lines = new ArrayList<>();
         lines.add("graph TD");
-        nodes.stream().map(MermaidNode::getName).map(lines::add);
+        for (MermaidNode node : nodes) {
+            lines.add(node.getName());
+        }
         // from -->|text| to
-        edges.stream().map(edge -> lines.add(edge.getFrom() + " -->|" + edge.getText() + "| " + edge.getTo()));
+        for (MermaidEdge edge : edges) {
+            lines.add(edge.getFrom() + " -->|" + edge.getText() + "| " + edge.getTo());
+        }
         return lines;
     }
 }
