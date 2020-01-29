@@ -1,10 +1,8 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.app;
 
-import edu.baylor.ecs.cloudhubs.prophetdto.systemcontext.BoundedContext;
-
 public class MicroserviceResult {
     private String name;
-    private BoundedContext boundedContext;
+    private String boundedContext;
 
     public MicroserviceResult() {}
 
@@ -16,11 +14,11 @@ public class MicroserviceResult {
         this.name = name;
     }
 
-    public BoundedContext getBoundedContext() {
+    public String getBoundedContext() {
         return boundedContext;
     }
 
-    public void setBoundedContext(BoundedContext boundedContext) {
+    public void setBoundedContext(String boundedContext) {
         this.boundedContext = boundedContext;
     }
 }
