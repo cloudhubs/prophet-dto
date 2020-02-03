@@ -6,7 +6,7 @@ import java.util.Set;
 
 public class Field {
 
-    private Name fieldName;
+    private Name name;
 
     private String type;
 
@@ -30,23 +30,23 @@ public class Field {
 
     public Field(String type, Name name) {
         this.type = type;
-        this.fieldName = name;
+        this.name = name;
     }
 
     public Field(String type, String name){
         this.type = type;
-        this.fieldName = new Name(name);
+        this.name = new Name(name);
     }
 
     public Field(Name name, String type, Set<Annotation> annotations, Entity entityReference) {
-        this.fieldName = new Name(name);
+        this.name = new Name(name);
         this.type = type;
         this.annotations = annotations;
         this.entityReference = entityReference;
     }
 
     public Field(Name name, String type, Set<Annotation> annotations, Entity entityReference, boolean isReference, String entityRefName, boolean isCollection) {
-        this.fieldName = new Name(name);
+        this.name = new Name(name);
         this.type = type;
         this.annotations = annotations;
         this.entityReference = entityReference;
@@ -56,11 +56,11 @@ public class Field {
     }
 
     public Name getName() {
-        return fieldName;
+        return name;
     }
 
     public void setName(Name name) {
-        this.fieldName = name;
+        this.name = name;
     }
 
     public String getType() {
@@ -134,7 +134,7 @@ public class Field {
     @Override
     public String toString() {
         return "Field{" +
-                "name='" + fieldName.getName() + '\'' +
+                "name='" + name.getName() + '\'' +
                 ", type='" + type + '\'' +
                 ", isReference=" + isReference +
                 '}';
