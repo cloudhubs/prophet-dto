@@ -6,11 +6,19 @@ public class MermaidEdge {
 
     private String to;
 
+    private String text;
+
     public MermaidEdge(){}
 
     public MermaidEdge(String from, String to) {
         this.from = from;
         this.to = to;
+    }
+
+    public MermaidEdge(String from, String to, String text) {
+        this.from = from;
+        this.to = to;
+        this.text = text;
     }
 
     public String getFrom() {
@@ -27,6 +35,14 @@ public class MermaidEdge {
 
     public void setTo(String to) {
         this.to = to;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public boolean exists(String from, String to){
