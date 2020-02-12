@@ -4,14 +4,14 @@ import java.util.List;
 
 public class ProphetAppMultiRepoRequest {
     List<ProphetAppRequest> repositories;
-    String msSystemName;
+    String systemName;
 
     public ProphetAppMultiRepoRequest() {
     }
 
-    public ProphetAppMultiRepoRequest(List<ProphetAppRequest> repositories, String msSystemName) {
+    public ProphetAppMultiRepoRequest(List<ProphetAppRequest> repositories, String systemName) {
         this.repositories = repositories;
-        this.msSystemName = msSystemName;
+        this.systemName = systemName;
     }
 
     public List<ProphetAppRequest> getRepositories() {
@@ -22,11 +22,11 @@ public class ProphetAppMultiRepoRequest {
         this.repositories = repositories;
     }
 
-    public String getMsSystemName() {
-        return msSystemName;
+    public String getSystemName() {
+        return systemName;
     }
 
-    public void setMsSystemName(String msSystemName) {
-        this.msSystemName = msSystemName;
+    public void setSystemName(String systemName) {
+        this.systemName = systemName;
     }
 }
