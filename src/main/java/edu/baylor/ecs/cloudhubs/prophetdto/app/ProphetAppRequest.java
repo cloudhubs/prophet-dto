@@ -38,7 +38,7 @@ public class ProphetAppRequest {
     public boolean isPersistDb() { return persistDb; }
     public void setPersistDb(boolean persistDb) { this.persistDb = persistDb; }
     public boolean isMonolith() { return isMonolith; }
-    public void setMonolith(boolean monolith) { isMonolith = monolith; }
+    public void setIsMonolith(boolean monolith) { isMonolith = monolith; }
     public boolean isAll() { return all; }
     public void setAll(boolean all) { this.all = all; }
     public boolean isCommunication() { return communication; }
