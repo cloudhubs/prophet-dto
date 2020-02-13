@@ -11,4 +11,5 @@ public class PySystem {
     List<PyModule> modules;
     List<PyPackage> packages;
     String type;
+    String language;
 }
