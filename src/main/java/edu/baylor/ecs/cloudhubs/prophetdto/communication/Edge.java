@@ -1,6 +1,6 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.communication;
 
-public class Edge {
+public class git sEdge {
 
     private String idA;
 
