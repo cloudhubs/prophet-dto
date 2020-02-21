@@ -86,7 +86,15 @@ public class MermaidGraph {
         }
         for (MermaidEdge me: edges
              ) {
-            list.add(me.getFrom() + " --> " + me.getTo() + " : 1:N");
+            String arrow;
+            if (me.isBidirectional()) {
+                arrow = " -- ";
+            } else {
+                arrow = " --> ";
+            }
+            list.add(me.getFrom() + " \"" + me.getFromCardinality() + "\"" +
+                    arrow +
+                    "\"" + me.getToCardinality() + "\" " + me.getTo());
         }
 
         return list;
