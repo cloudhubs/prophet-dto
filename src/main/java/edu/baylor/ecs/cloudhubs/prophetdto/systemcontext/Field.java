@@ -12,15 +12,13 @@ public class Field {
 
     private Set<Annotation> annotations = new HashSet<>();
 
-    private Entity entityReference = null;
-
     private boolean isReference;
 
     private String entityRefName;
 
     public Field clone(){
         // need to change the entity reference later to the new entity
-        return new Field(this.getName(), this.getType(), this.getAnnotations(), this.getEntityReference(),
+        return new Field(this.getName(), this.getType(), this.getAnnotations(),
                 this.isReference(), this.getEntityRefName(), this.isCollection());
     }
 
@@ -38,18 +36,16 @@ public class Field {
         this.name = new Name(name);
     }
 
-    public Field(Name name, String type, Set<Annotation> annotations, Entity entityReference) {
+    public Field(Name name, String type, Set<Annotation> annotations) {
         this.name = new Name(name);
         this.type = type;
         this.annotations = annotations;
-        this.entityReference = entityReference;
     }
 
-    public Field(Name name, String type, Set<Annotation> annotations, Entity entityReference, boolean isReference, String entityRefName, boolean isCollection) {
+    public Field(Name name, String type, Set<Annotation> annotations, boolean isReference, String entityRefName, boolean isCollection) {
         this.name = new Name(name);
         this.type = type;
         this.annotations = annotations;
-        this.entityReference = entityReference;
         this.isReference = isReference;
         this.entityRefName = entityRefName;
         this.isCollection = isCollection;
@@ -77,14 +73,6 @@ public class Field {
 
     public void setAnnotations(Set<Annotation> annotations) {
         this.annotations = annotations;
-    }
-
-    public Entity getEntityReference() {
-        return entityReference;
-    }
-
-    public void setEntityReference(Entity entityReference) {
-        this.entityReference = entityReference;
     }
 
     public boolean isCollection() {
@@ -122,13 +110,12 @@ public class Field {
                 Objects.equals(getName(), field.getName()) &&
                 Objects.equals(getType(), field.getType()) &&
                 Objects.equals(getAnnotations(), field.getAnnotations()) &&
-                Objects.equals(getEntityReference(), field.getEntityReference()) &&
                 Objects.equals(getEntityRefName(), field.getEntityRefName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getType(), getAnnotations(), getEntityReference(), isReference(), getEntityRefName(), isCollection());
+        return Objects.hash(getName(), getType(), getAnnotations(), isReference(), getEntityRefName(), isCollection());
     }
 
     @Override

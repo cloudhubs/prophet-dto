@@ -9,23 +9,12 @@ public class Module {
     private Set<Entity> entities;
 
     public Module clone(){
-        Map<Entity, Entity> oldToNew = new HashMap<>();
         Set<Entity> entitySet = new HashSet<>();
         this.getEntities().forEach(x ->
         {
-            Entity newEnt = x.clone();
-            oldToNew.put(x, newEnt);
-            entitySet.add(newEnt);
+            entitySet.add(x.clone());
         });
 
-        // now fix the entity references
-        for(Entity e: entitySet){
-            for (Field f : e.getFields()) {
-                if (Objects.nonNull(f.getEntityReference())) {
-                    f.setEntityReference(oldToNew.get(f.getEntityReference()));
-                }
-            }
-        }
         return new Module(this.getName(), entitySet);
     }
     public Module(){}
