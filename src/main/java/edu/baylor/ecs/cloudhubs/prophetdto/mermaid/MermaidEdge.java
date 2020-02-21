@@ -8,6 +8,12 @@ public class MermaidEdge {
 
     private String text;
 
+    private boolean isBidirectional = false;
+
+    private String fromCardinality;
+
+    private String toCardinality;
+
     public MermaidEdge(){}
 
     public MermaidEdge(String from, String to) {
@@ -19,6 +25,15 @@ public class MermaidEdge {
         this.from = from;
         this.to = to;
         this.text = text;
+    }
+
+    public MermaidEdge(String from, String to, String text, boolean isBidirectional, String fromCardinality, String toCardinality) {
+        this.from = from;
+        this.to = to;
+        this.text = text;
+        this.isBidirectional = isBidirectional;
+        this.fromCardinality = fromCardinality;
+        this.toCardinality = toCardinality;
     }
 
     public String getFrom() {
@@ -43,6 +58,30 @@ public class MermaidEdge {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public boolean isBidirectional() {
+        return isBidirectional;
+    }
+
+    public void setBidirectional(boolean bidirectional) {
+        isBidirectional = bidirectional;
+    }
+
+    public String getFromCardinality() {
+        return fromCardinality;
+    }
+
+    public void setFromCardinality(String fromCardinality) {
+        this.fromCardinality = fromCardinality;
+    }
+
+    public String getToCardinality() {
+        return toCardinality;
+    }
+
+    public void setToCardinality(String toCardinality) {
+        this.toCardinality = toCardinality;
     }
 
     public boolean exists(String from, String to){
