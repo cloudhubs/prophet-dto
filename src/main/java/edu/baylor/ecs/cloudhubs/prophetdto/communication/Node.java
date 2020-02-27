@@ -3,7 +3,7 @@ package edu.baylor.ecs.cloudhubs.prophetdto.communication;
 import lombok.Data;
 
 @Data
-public class git Node {
+public class Node {
 
     private String id;
     private String label;
