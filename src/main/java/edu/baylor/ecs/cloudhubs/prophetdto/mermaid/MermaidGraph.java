@@ -75,17 +75,7 @@ public class MermaidGraph {
     public List<String> getHtmlLines(){
         List<String> list = new ArrayList<>();
         list.add("classDiagram");
-        for (Entity e: entities
-        ) {
-            list.add("\t class " + e.getEntityName().getName());
-            for (Field f: e.getFields()){
-                if (!f.isReference()){
-                    list.add("      " + e.getEntityName().getName() + " : +" + f.getType() + " " + f.getName().getName());
-                }
-            }
-        }
-        for (MermaidEdge me: edges
-             ) {
+        for (MermaidEdge me: edges) {
             String arrow;
             if (me.isBidirectional()) {
                 arrow = " -- ";
@@ -96,7 +86,14 @@ public class MermaidGraph {
                     arrow +
                     "\"" + me.getToCardinality() + "\" " + me.getTo());
         }
-
+        for (Entity e: entities) {
+            list.add("\t class " + e.getEntityName().getName());
+            for (Field f: e.getFields()){
+                if (!f.isReference()){
+                    list.add("      " + e.getEntityName().getName() + " : +" + f.getType() + " " + f.getName().getName());
+                }
+            }
+        }
         return list;
     }
 }
