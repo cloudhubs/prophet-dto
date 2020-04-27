@@ -11,6 +11,8 @@ public class Edge {
 
     private String sequenceNumber;
 
+    private String conditionString;
+
     private String idA;
 
     private String idB;
