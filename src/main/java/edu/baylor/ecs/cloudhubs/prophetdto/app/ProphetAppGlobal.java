@@ -2,7 +2,9 @@ package edu.baylor.ecs.cloudhubs.prophetdto.app;
 
 public class ProphetAppGlobal {
     String projectName;
+    boolean hasCommunication;
     String communication;
+    boolean hasContextMap;
     String contextMap;
 
     public ProphetAppGlobal() {
@@ -36,5 +38,21 @@ public class ProphetAppGlobal {
 
     public void setContextMap(String contextMap) {
         this.contextMap = contextMap;
+    }
+
+    public boolean getHasCommunication() {
+        return hasCommunication;
+    }
+
+    public void setHasCommunication(boolean hasCommunication) {
+        this.hasCommunication = hasCommunication;
+    }
+
+    public boolean getHasContextMap() {
+        return hasContextMap;
+    }
+
+    public void setHasContextMap(boolean hasContextMap) {
+        this.hasContextMap = hasContextMap;
     }
 }
