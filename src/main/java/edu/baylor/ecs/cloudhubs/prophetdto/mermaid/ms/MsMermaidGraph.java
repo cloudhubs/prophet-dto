@@ -52,8 +52,8 @@ public class MsMermaidGraph {
     public List<String> getHtmlLines() {
         List<String> lines = new ArrayList<>();
         lines.add("graph TD");
-        for (MermaidNode node : nodes) {
-            lines.add(node.getName());
+        if (edges.size() == 0) {
+            lines.add("N/A");
         }
         // from -->|text| to
         for (MermaidEdge edge : edges) {
