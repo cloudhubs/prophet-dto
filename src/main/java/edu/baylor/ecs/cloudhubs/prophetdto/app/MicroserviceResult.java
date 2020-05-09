@@ -4,6 +4,7 @@ public class MicroserviceResult {
     private String name;
     private String boundedContext;
     private boolean hasBoundedContext;
+    private String message;
 
     public MicroserviceResult() {}
 
@@ -29,5 +30,13 @@ public class MicroserviceResult {
 
     public void setHasBoundedContext(boolean hasBoundedContext) {
         this.hasBoundedContext = hasBoundedContext;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }
