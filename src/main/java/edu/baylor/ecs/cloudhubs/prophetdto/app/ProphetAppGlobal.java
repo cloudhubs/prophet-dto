@@ -2,9 +2,25 @@ package edu.baylor.ecs.cloudhubs.prophetdto.app;
 
 public class ProphetAppGlobal {
     String projectName;
+
+    /**
+     * True if we could make a communication diagram for this project, else false
+     */
     boolean hasCommunication;
+
+    /**
+     * Mermaid communication diagram
+     */
     String communication;
+
+    /**
+     * True if we could make a context map for this project, else false
+     */
     boolean hasContextMap;
+
+    /**
+     * Mermaid context map
+     */
     String contextMap;
 
     public ProphetAppGlobal() {

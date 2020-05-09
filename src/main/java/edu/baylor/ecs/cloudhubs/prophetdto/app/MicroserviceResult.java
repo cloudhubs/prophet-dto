@@ -2,9 +2,21 @@ package edu.baylor.ecs.cloudhubs.prophetdto.app;
 
 public class MicroserviceResult {
     private String name;
-    private String boundedContext;
+
+    /**
+     * True if we could make a bounded context for this service, else false
+     */
     private boolean hasBoundedContext;
+
+    /**
+     * Message giving the reason we failed to create a bounded context
+     */
     private String message;
+
+    /**
+     * Mermaid class diagram for bounded context
+     */
+    private String boundedContext;
 
     public MicroserviceResult() {}
 
