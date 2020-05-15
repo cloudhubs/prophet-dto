@@ -4,14 +4,14 @@ public class MicroserviceResult {
     private String name;
 
     /**
-     * True if we could make a bounded context for this service, else false
+     * True if we failed to created bounded context, else false
      */
-    private boolean hasBoundedContext;
+    private boolean noBoundedContext;
 
     /**
-     * Message giving the reason we failed to create a bounded context
+     * True if we failed to find Java files in the project, else false
      */
-    private String message;
+    private boolean notJava;
 
     /**
      * Mermaid class diagram for bounded context
@@ -36,19 +36,19 @@ public class MicroserviceResult {
         this.boundedContext = boundedContext;
     }
 
-    public boolean isHasBoundedContext() {
-        return hasBoundedContext;
+    public boolean isNoBoundedContext() {
+        return noBoundedContext;
     }
 
-    public void setHasBoundedContext(boolean hasBoundedContext) {
-        this.hasBoundedContext = hasBoundedContext;
+    public void setNoBoundedContext(boolean noBoundedContext) {
+        this.noBoundedContext = noBoundedContext;
     }
 
-    public String getMessage() {
-        return message;
+    public boolean isNotJava() {
+        return notJava;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setNotJava(boolean notJava) {
+        this.notJava = notJava;
     }
 }

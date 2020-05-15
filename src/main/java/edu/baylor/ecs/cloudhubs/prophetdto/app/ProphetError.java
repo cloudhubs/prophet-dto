@@ -2,7 +2,7 @@ package edu.baylor.ecs.cloudhubs.prophetdto.app;
 
 public class ProphetError {
   private boolean error;
-  private String message;
+  private String errorMessage;
 
   public ProphetError() {
   }
@@ -15,11 +15,11 @@ public class ProphetError {
     this.error = error;
   }
 
-  public String getMessage() {
-    return message;
+  public String getErrorMessage() {
+    return errorMessage;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setErrorMessage(String errorMessage) {
+    this.errorMessage = errorMessage;
   }
 }

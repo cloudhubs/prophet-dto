@@ -4,9 +4,9 @@ public class ProphetAppGlobal {
     String projectName;
 
     /**
-     * True if we could make a communication diagram for this project, else false
+     * True if we failed to make a communication diagram for this project, else false
      */
-    boolean hasCommunication;
+    boolean noCommunication;
 
     /**
      * Mermaid communication diagram
@@ -14,14 +14,19 @@ public class ProphetAppGlobal {
     String communication;
 
     /**
-     * True if we could make a context map for this project, else false
+     * True if we failed to make a context map for this project, else false
      */
-    boolean hasContextMap;
+    boolean noContextMap;
 
     /**
      * Mermaid context map
      */
     String contextMap;
+
+    /**
+     * True if we failed to clone this repo, else false
+     */
+    boolean cannotClone;
 
     public ProphetAppGlobal() {
     }
@@ -40,12 +45,28 @@ public class ProphetAppGlobal {
         this.projectName = projectName;
     }
 
+    public boolean isNoCommunication() {
+        return noCommunication;
+    }
+
+    public void setNoCommunication(boolean noCommunication) {
+        this.noCommunication = noCommunication;
+    }
+
     public String getCommunication() {
         return communication;
     }
 
     public void setCommunication(String communication) {
         this.communication = communication;
+    }
+
+    public boolean isNoContextMap() {
+        return noContextMap;
+    }
+
+    public void setNoContextMap(boolean noContextMap) {
+        this.noContextMap = noContextMap;
     }
 
     public String getContextMap() {
@@ -56,19 +77,11 @@ public class ProphetAppGlobal {
         this.contextMap = contextMap;
     }
 
-    public boolean getHasCommunication() {
-        return hasCommunication;
+    public boolean isCannotClone() {
+        return cannotClone;
     }
 
-    public void setHasCommunication(boolean hasCommunication) {
-        this.hasCommunication = hasCommunication;
-    }
-
-    public boolean getHasContextMap() {
-        return hasContextMap;
-    }
-
-    public void setHasContextMap(boolean hasContextMap) {
-        this.hasContextMap = hasContextMap;
+    public void setCannotClone(boolean cannotClone) {
+        this.cannotClone = cannotClone;
     }
 }
