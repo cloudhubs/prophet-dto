@@ -2,6 +2,9 @@ package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
 import java.util.*;
 
+import lombok.Data;
+
+@Data
 public class Module {
 
     private Name name;
@@ -27,35 +30,5 @@ public class Module {
     public Module( Name name, Set<Entity> entities) {
         this.name = new Name(name);
         this.entities = entities;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public void setName(Name name) {
-        this.name = name;
-    }
-
-    public Set<Entity> getEntities() {
-        return entities;
-    }
-
-    public void setEntities(Set<Entity> entities) {
-        this.entities = entities;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Module module = (Module) o;
-        return Objects.equals(name, module.name) &&
-                Objects.equals(entities, module.entities);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, entities);
     }
 }

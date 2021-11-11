@@ -1,5 +1,14 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.app;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class ProphetAppGlobal {
     String projectName;
 
@@ -27,61 +36,4 @@ public class ProphetAppGlobal {
      * True if we failed to clone this repo, else false
      */
     boolean cannotClone;
-
-    public ProphetAppGlobal() {
-    }
-
-    public ProphetAppGlobal(String projectName, String communication, String contextMap) {
-        this.projectName = projectName;
-        this.communication = communication;
-        this.contextMap = contextMap;
-    }
-
-    public String getProjectName() {
-        return projectName;
-    }
-
-    public void setProjectName(String projectName) {
-        this.projectName = projectName;
-    }
-
-    public boolean isNoCommunication() {
-        return noCommunication;
-    }
-
-    public void setNoCommunication(boolean noCommunication) {
-        this.noCommunication = noCommunication;
-    }
-
-    public String getCommunication() {
-        return communication;
-    }
-
-    public void setCommunication(String communication) {
-        this.communication = communication;
-    }
-
-    public boolean isNoContextMap() {
-        return noContextMap;
-    }
-
-    public void setNoContextMap(boolean noContextMap) {
-        this.noContextMap = noContextMap;
-    }
-
-    public String getContextMap() {
-        return contextMap;
-    }
-
-    public void setContextMap(String contextMap) {
-        this.contextMap = contextMap;
-    }
-
-    public boolean isCannotClone() {
-        return cannotClone;
-    }
-
-    public void setCannotClone(boolean cannotClone) {
-        this.cannotClone = cannotClone;
-    }
 }
