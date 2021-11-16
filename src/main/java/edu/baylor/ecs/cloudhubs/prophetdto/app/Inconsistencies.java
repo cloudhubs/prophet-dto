@@ -2,10 +2,12 @@ package edu.baylor.ecs.cloudhubs.prophetdto.app;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Getter;
 
 /**
  * Represents inconsistency categories
  */
+@Getter
 public class Inconsistencies {
 
     private List<InconsistencyTuple> security;
@@ -28,17 +30,5 @@ public class Inconsistencies {
 
     public void addApi(InconsistencyTuple t){
         this.api.add(t);
-    }
-
-    public List<InconsistencyTuple> getSecurity() {
-        return security;
-    }
-
-    public List<InconsistencyTuple> getDatabase() {
-        return database;
-    }
-
-    public List<InconsistencyTuple> getApi() {
-        return api;
     }
 }

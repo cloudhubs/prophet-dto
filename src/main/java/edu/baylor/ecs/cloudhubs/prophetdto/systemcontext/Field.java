@@ -1,9 +1,11 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
+import lombok.Data;
+
+@Data
 public class Field {
 
     private Name name;
@@ -49,73 +51,6 @@ public class Field {
         this.isReference = isReference;
         this.entityRefName = entityRefName;
         this.isCollection = isCollection;
-    }
-
-    public Name getName() {
-        return name;
-    }
-
-    public void setName(Name name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Set<Annotation> getAnnotations() {
-        return annotations;
-    }
-
-    public void setAnnotations(Set<Annotation> annotations) {
-        this.annotations = annotations;
-    }
-
-    public boolean isCollection() {
-        return isCollection;
-    }
-
-    public void setCollection(boolean collection) {
-        isCollection = collection;
-    }
-
-    public boolean isReference() {
-        return isReference;
-    }
-
-    public void setReference(boolean reference) {
-        isReference = reference;
-    }
-
-    public String getEntityRefName() {
-        return entityRefName;
-    }
-
-    public void setEntityRefName(String entityRefName) {
-        this.entityRefName = entityRefName;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Field)) return false;
-        Field field = (Field) o;
-        return isReference() == field.isReference() &&
-                isCollection() == field.isCollection() &&
-                Objects.equals(getName(), field.getName()) &&
-                Objects.equals(getType(), field.getType()) &&
-                Objects.equals(getAnnotations(), field.getAnnotations()) &&
-                Objects.equals(getEntityRefName(), field.getEntityRefName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getType(), getAnnotations(), isReference(), getEntityRefName(), isCollection());
     }
 
     @Override

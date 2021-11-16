@@ -2,26 +2,15 @@ package edu.baylor.ecs.cloudhubs.prophetdto.systemcontext;
 
 import java.util.Objects;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Name {
 
     private String name;
     private String fullName;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
 
     public Name(Name n){
         this.name = n.name;

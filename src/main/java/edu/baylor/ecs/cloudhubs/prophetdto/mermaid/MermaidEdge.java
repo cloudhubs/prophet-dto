@@ -1,5 +1,10 @@
 package edu.baylor.ecs.cloudhubs.prophetdto.mermaid;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class MermaidEdge {
 
     private String from;
@@ -33,54 +38,6 @@ public class MermaidEdge {
         this.text = text;
         this.isBidirectional = isBidirectional;
         this.fromCardinality = fromCardinality;
-        this.toCardinality = toCardinality;
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(String from) {
-        this.from = from;
-    }
-
-    public String getTo() {
-        return to;
-    }
-
-    public void setTo(String to) {
-        this.to = to;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public boolean isBidirectional() {
-        return isBidirectional;
-    }
-
-    public void setBidirectional(boolean bidirectional) {
-        isBidirectional = bidirectional;
-    }
-
-    public String getFromCardinality() {
-        return fromCardinality;
-    }
-
-    public void setFromCardinality(String fromCardinality) {
-        this.fromCardinality = fromCardinality;
-    }
-
-    public String getToCardinality() {
-        return toCardinality;
-    }
-
-    public void setToCardinality(String toCardinality) {
         this.toCardinality = toCardinality;
     }
 

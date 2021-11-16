@@ -5,6 +5,15 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@EqualsAndHashCode
 public class Entity {
 
     private Name entityName;
@@ -38,36 +47,6 @@ public class Entity {
         Entity toReturn = this.clone();
         toReturn.getEntityName().setFullName(preface + entityName.getFullName());
         return toReturn;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Entity entity = (Entity) o;
-        return Objects.equals(entityName, entity.entityName) &&
-                Objects.equals(fields, entity.fields);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(entityName, fields);
-    }
-
-    public Name getEntityName() {
-        return entityName;
-    }
-
-    public void setEntityName(Name entityName) {
-        this.entityName = entityName;
-    }
-
-    public Set<Field> getFields() {
-        return fields;
-    }
-
-    public void setFields(Set<Field> fields) {
-        this.fields = fields;
     }
 
     @Override

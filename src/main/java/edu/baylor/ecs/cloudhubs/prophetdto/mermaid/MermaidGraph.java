@@ -2,12 +2,20 @@ package edu.baylor.ecs.cloudhubs.prophetdto.mermaid;
 
 import edu.baylor.ecs.cloudhubs.prophetdto.systemcontext.Entity;
 import edu.baylor.ecs.cloudhubs.prophetdto.systemcontext.Field;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class MermaidGraph {
 
     private List<MermaidNode> nodes;
@@ -15,38 +23,6 @@ public class MermaidGraph {
     private List<MermaidEdge> edges;
 
     private Set<Entity> entities;
-
-    public MermaidGraph(){}
-
-    public MermaidGraph(List<MermaidNode> nodes, List<MermaidEdge> edges, Set<Entity> entities) {
-        this.nodes = nodes;
-        this.edges = edges;
-        this.entities = entities;
-    }
-
-    public List<MermaidNode> getNodes() {
-        return nodes;
-    }
-
-    public void setNodes(List<MermaidNode> nodes) {
-        this.nodes = nodes;
-    }
-
-    public List<MermaidEdge> getEdges() {
-        return edges;
-    }
-
-    public void setEdges(List<MermaidEdge> edges) {
-        this.edges = edges;
-    }
-
-    public Set<Entity> getEntities() {
-        return entities;
-    }
-
-    public void setEntities(Set<Entity> entities) {
-        this.entities = entities;
-    }
 
 
 //    Class01 <|-- AveryLongClass : Cool
