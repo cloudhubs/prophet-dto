@@ -3,9 +3,17 @@ package edu.baylor.ecs.cloudhubs.prophetdto.mermaid.ms;
 import edu.baylor.ecs.cloudhubs.prophetdto.mermaid.MermaidEdge;
 import edu.baylor.ecs.cloudhubs.prophetdto.mermaid.MermaidNode;
 import edu.baylor.ecs.cloudhubs.prophetdto.mscontext.MsModel;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
  * Represents a mermaid graph of a microservice REST communication graph obtained from RAD
@@ -60,5 +68,77 @@ public class MsMermaidGraph {
             lines.add(edge.getFrom() + "-->|\"" + edge.getText() + "\"|" + edge.getTo());
         }
         return lines;
+    }
+    
+    public String getJSONRepresentation() {
+    	Map<String, Map<String, Map<String, Map<String, List<ServiceData>>>>> mapRepresentation = getMapRepresentation();
+    	ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            String json = objectMapper.writeValueAsString(mapRepresentation);
+            return json;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public Map<String, Map<String, Map<String, Map<String, List<ServiceData>>>>> getMapRepresentation() {
+    	Map<String, Map<String, Map<String, Map<String, List<ServiceData>>>>> mapRepresentation = new HashMap<String, Map<String,Map<String,Map<String,List<ServiceData>>>>>();
+    	for (MermaidEdge edge : edges) {
+    		String[] requestParts = edge.getText().split("<br/>");
+    		String methodType = requestParts[0];
+    		String arguments = requestParts[1];
+    		String returnData = requestParts[2];
+    		String endPointName = requestParts[3];
+    		ServiceData serviceData = new ServiceData(arguments, returnData, endPointName);
+    		
+    		addToMapRepresentation(mapRepresentation, serviceData, methodType, edge.getFrom(), edge.getTo(), true);
+    		addToMapRepresentation(mapRepresentation, serviceData, methodType, edge.getTo(), edge.getFrom(), false);
+        }
+    	
+    	return mapRepresentation;
+    	
+    }
+    
+    private void addToMapRepresentation(Map<String, Map<String, Map<String, Map<String, List<ServiceData>>>>> mapRepresentation, ServiceData serviceData, String methodType, String serviceName, String toBeAddedServiceName, boolean isDependant) {
+    	String dependantKey = "Dependants";
+    	String dependsOnKey = "DependsOn";
+    	if (!mapRepresentation.containsKey(serviceName)) {
+    		mapRepresentation.put(serviceName, new HashMap<String, Map<String,Map<String,List<ServiceData>>>>());
+    		mapRepresentation.get(serviceName).put(dependantKey, new HashMap<String, Map<String,List<ServiceData>>>());
+    		mapRepresentation.get(serviceName).put(dependsOnKey, new HashMap<String, Map<String,List<ServiceData>>>());
+    	}
+    	
+    	if(isDependant && !mapRepresentation.get(serviceName).get(dependantKey).containsKey(methodType)) {
+    		mapRepresentation.get(serviceName).get(dependantKey).put(methodType, new HashMap<String, List<ServiceData>>());
+    	}
+    	
+    	if(!isDependant && !mapRepresentation.get(serviceName).get(dependsOnKey).containsKey(methodType)) {
+    		mapRepresentation.get(serviceName).get(dependsOnKey).put(methodType, new HashMap<String, List<ServiceData>>());
+    	}
+    	
+    	if(isDependant) {
+    		
+    		if(!mapRepresentation.get(serviceName).get(dependantKey).get(methodType).containsKey(toBeAddedServiceName)) {
+    			mapRepresentation.get(serviceName).get(dependantKey).get(methodType).put(toBeAddedServiceName, new ArrayList<MsMermaidGraph.ServiceData>());
+    		}
+    		mapRepresentation.get(serviceName).get(dependantKey).get(methodType).get(toBeAddedServiceName).add(serviceData);
+    		
+    	} else {
+    		if(!mapRepresentation.get(serviceName).get(dependsOnKey).get(methodType).containsKey(toBeAddedServiceName)) {
+    			mapRepresentation.get(serviceName).get(dependsOnKey).get(methodType).put(toBeAddedServiceName, new ArrayList<MsMermaidGraph.ServiceData>());
+    		}
+    		mapRepresentation.get(serviceName).get(dependsOnKey).get(methodType).get(toBeAddedServiceName).add(serviceData);
+    	}
+    	
+    }
+    
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ServiceData {
+    	private String arguments;
+    	private String returnData;
+    	private String endPointName;
     }
 }
