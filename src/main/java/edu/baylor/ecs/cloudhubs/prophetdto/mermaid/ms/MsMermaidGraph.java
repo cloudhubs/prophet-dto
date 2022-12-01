@@ -97,11 +97,14 @@ public class MsMermaidGraph {
         }
     	
     	for (MermaidNode node : nodes) {
+    		System.err.println("Node : "+ node.getName());
     		if (!mapRepresentation.containsKey(node.getName())) {
-    			ServiceData serviceData = new ServiceData("", "", "");
-    			String methodType = "";
+    			System.err.println("INSIDE ");
     			String serviceName = node.getName();
-    			addToMapRepresentation(mapRepresentation, serviceData, methodType, serviceName, "", true);
+    			mapRepresentation.put(serviceName, new HashMap<String, Map<String,Map<String,List<ServiceData>>>>());
+    			System.err.println("ADDED ");
+//        		mapRepresentation.get(serviceName).put(dependantKey, new HashMap<String, Map<String,List<ServiceData>>>());
+//        		mapRepresentation.get(serviceName).put(dependsOnKey, new HashMap<String, Map<String,List<ServiceData>>>());
     		}
     	}
     	
