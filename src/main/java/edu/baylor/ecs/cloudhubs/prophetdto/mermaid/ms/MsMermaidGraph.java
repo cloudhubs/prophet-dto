@@ -96,6 +96,15 @@ public class MsMermaidGraph {
     		addToMapRepresentation(mapRepresentation, serviceData, methodType, edge.getTo(), edge.getFrom(), false);
         }
     	
+    	for (MermaidNode node : nodes) {
+    		if (!mapRepresentation.containsKey(node.getName())) {
+    			ServiceData serviceData = new ServiceData("", "", "");
+    			String methodType = "";
+    			String serviceName = node.getName();
+    			addToMapRepresentation(mapRepresentation, serviceData, methodType, serviceName, "", true);
+    		}
+    	}
+    	
     	return mapRepresentation;
     	
     }
