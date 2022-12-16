@@ -113,34 +113,34 @@ public class MsMermaidGraph {
     }
     
     private void addToMapRepresentation(Map<String, Map<String, Map<String, Map<String, List<ServiceData>>>>> mapRepresentation, ServiceData serviceData, String methodType, String serviceName, String toBeAddedServiceName, boolean isDependant) {
-    	String dependantKey = "Dependants";
-    	String dependsOnKey = "DependsOn";
+    	String dependenciesKey = "Dependencies";
+    	String dependantsKey = "Dependants";
     	if (!mapRepresentation.containsKey(serviceName)) {
     		mapRepresentation.put(serviceName, new HashMap<String, Map<String,Map<String,List<ServiceData>>>>());
-    		mapRepresentation.get(serviceName).put(dependantKey, new HashMap<String, Map<String,List<ServiceData>>>());
-    		mapRepresentation.get(serviceName).put(dependsOnKey, new HashMap<String, Map<String,List<ServiceData>>>());
+    		mapRepresentation.get(serviceName).put(dependenciesKey, new HashMap<String, Map<String,List<ServiceData>>>());
+    		mapRepresentation.get(serviceName).put(dependantsKey, new HashMap<String, Map<String,List<ServiceData>>>());
     	}
     	
-    	if(isDependant && !mapRepresentation.get(serviceName).get(dependantKey).containsKey(methodType)) {
-    		mapRepresentation.get(serviceName).get(dependantKey).put(methodType, new HashMap<String, List<ServiceData>>());
+    	if(isDependant && !mapRepresentation.get(serviceName).get(dependenciesKey).containsKey(methodType)) {
+    		mapRepresentation.get(serviceName).get(dependenciesKey).put(methodType, new HashMap<String, List<ServiceData>>());
     	}
     	
-    	if(!isDependant && !mapRepresentation.get(serviceName).get(dependsOnKey).containsKey(methodType)) {
-    		mapRepresentation.get(serviceName).get(dependsOnKey).put(methodType, new HashMap<String, List<ServiceData>>());
+    	if(!isDependant && !mapRepresentation.get(serviceName).get(dependantsKey).containsKey(methodType)) {
+    		mapRepresentation.get(serviceName).get(dependantsKey).put(methodType, new HashMap<String, List<ServiceData>>());
     	}
     	
     	if(isDependant) {
     		
-    		if(!mapRepresentation.get(serviceName).get(dependantKey).get(methodType).containsKey(toBeAddedServiceName)) {
-    			mapRepresentation.get(serviceName).get(dependantKey).get(methodType).put(toBeAddedServiceName, new ArrayList<MsMermaidGraph.ServiceData>());
+    		if(!mapRepresentation.get(serviceName).get(dependenciesKey).get(methodType).containsKey(toBeAddedServiceName)) {
+    			mapRepresentation.get(serviceName).get(dependenciesKey).get(methodType).put(toBeAddedServiceName, new ArrayList<MsMermaidGraph.ServiceData>());
     		}
-    		mapRepresentation.get(serviceName).get(dependantKey).get(methodType).get(toBeAddedServiceName).add(serviceData);
+    		mapRepresentation.get(serviceName).get(dependenciesKey).get(methodType).get(toBeAddedServiceName).add(serviceData);
     		
     	} else {
-    		if(!mapRepresentation.get(serviceName).get(dependsOnKey).get(methodType).containsKey(toBeAddedServiceName)) {
-    			mapRepresentation.get(serviceName).get(dependsOnKey).get(methodType).put(toBeAddedServiceName, new ArrayList<MsMermaidGraph.ServiceData>());
+    		if(!mapRepresentation.get(serviceName).get(dependantsKey).get(methodType).containsKey(toBeAddedServiceName)) {
+    			mapRepresentation.get(serviceName).get(dependantsKey).get(methodType).put(toBeAddedServiceName, new ArrayList<MsMermaidGraph.ServiceData>());
     		}
-    		mapRepresentation.get(serviceName).get(dependsOnKey).get(methodType).get(toBeAddedServiceName).add(serviceData);
+    		mapRepresentation.get(serviceName).get(dependantsKey).get(methodType).get(toBeAddedServiceName).add(serviceData);
     	}
     	
     }
