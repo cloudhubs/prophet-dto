@@ -5,6 +5,7 @@ import java.util.List;
 public class GitReq {
     private List<RepoReq> repositories;
     private String systemName;
+    private String extractedJsonDataFilePath;
     public GitReq() {}
     public List<RepoReq> getRepositories() {
         return repositories;
@@ -18,4 +19,11 @@ public class GitReq {
     public void setSystemName(String systemName) {
         this.systemName = systemName;
     }
+    public void setExtractedJsonDataFilePath(String path) {
+    	this.extractedJsonDataFilePath = path;
+    }
+    
+   public String getExtractedJsonDataFilePath() {
+	   return this.extractedJsonDataFilePath;
+   }
 }
