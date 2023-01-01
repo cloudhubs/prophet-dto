@@ -4,5 +4,7 @@ public enum MsLabelType {
     PUT,
     POST,
     DELETE,
-    GET
+    GET,
+    RPC,
+    EVENT
 }
